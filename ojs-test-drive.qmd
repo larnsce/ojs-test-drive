@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "OJS test drive"
 format: html
 ---
 
@@ -77,4 +77,14 @@ Plot.plot({
   ]
 })
 ```
+
+# Session Info
+
+- RStudio Version: 2022.7.2.576
+
+```{r}
+sessionInfo()
+```
+
+
 
