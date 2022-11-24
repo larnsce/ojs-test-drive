@@ -1,0 +1,80 @@
+---
+title: "Untitled"
+format: html
+---
+
+# R
+
+```{r}
+#| echo: fenced
+1 + 1
+```
+
+# OJS
+
+No output after rendering.
+
+```{ojs}
+//| echo: fenced
+1 + 1
+```
+
+# Test ojs_define()
+
+No error in rendered output. Function available?
+
+```{r}
+
+library(palmerpenguins)
+
+ojs_define(data = penguins)
+
+```
+
+# Test ojs example
+
+Example from: https://quarto.org/docs/interactive/ojs/ojs-cells.html#code-display
+
+## Write data to source folder
+
+```{r}
+write.csv(penguins, file = "palmer-penguins.csv")
+```
+
+## Use example
+
+No output in rendered document.
+
+```{ojs}
+//| echo: fenced
+pdata = FileAttachment("palmer-penguins.csv").csv({typed: true})
+
+Plot.plot({
+  facet: {
+    data: pdata,
+    x: "sex",
+    y: "species",
+    marginRight: 80
+  },
+  marks: [
+    Plot.frame(),
+    Plot.rectY(pdata, 
+      Plot.binX(
+        {y: "count"}, 
+        {x: "body_mass_g", thresholds: 20, fill: "species"}
+      )
+    ),
+    Plot.tickX(pdata, 
+      Plot.groupZ(
+        {x: "median"}, 
+        {x: "body_mass_g",
+         z: d => d.sex + d.species,
+         stroke: "#333",
+         strokeWidth: 2
+        }
+      )
+    )
+  ]
+})
+```
+
